@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -e
+
+
+
+#check if su
+
+#if [[ $EUID -ne 0 ]]; then
+ #   echo "Please use the script with superuser"
+  #  exit 
+#fi
+#DISTRO_NAME="$(lsb_release -si)";
+source /etc/os-release
+DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
+#echo $DISTRO_NAME
+#echo $ID
+
+function if_ubuntu () {
+if [[ "$VERSION_ID" != "18.04" ]]; then
+    echo Version of the $DISTRO_NAME_HUMAN should be 18.04!
+    exit 1
+fi
+}
+
+function if_centos ()
+{
+        if [ "$VERSION_ID" != "7"]; then
+            echo "Version of the $DISTRO_NAME_HUMAN should be 7!"
+            exit 1
+fi
+}
+if [ "$ID" == "ubuntu" ] || [ "$ID" == "centos" ]; then
+    if_ubuntu
+elif [ "$ID" == "centos" ]; then
+    if_centos
+else
+    echo "Operating system should be Ubuntu 18.04 or CentOs 7"
+    exit 1
+fi
+
+
+
+#lsb_release -sr | cut -d '.' -f 1
+
+#    echo "Starting installation for $DISTRO_NAME_HUMAN"
