@@ -94,7 +94,18 @@ done
 function default_html(){
      ROOT_DIR=$(grep root -m1 /etc/nginx/sites-available/default | cut -d " " -f2 | sed 's/;$//')
    find $ROOT_DIR -type f -delete
-   echo "<html><body><h1>Testing one two tree</h1><img src="https://scontent.fadb6-5.fna.fbcdn.net/v/t31.18172-8/10608762_10204531125785467_1512482668131383046_o.jpg?_nc_cat=105&ccb=1-5&_nc_sid=174925&_nc_ohc=NoWp4GFHYHgAX9xIW5Y&_nc_ht=scontent.fadb6-5.fna&oh=00_AT--yVftjVo5EF1inzITPEQ3_Npe6kMnHTOXjfhhuQIH1w&oe=61FC7DF4" alt="kurcalamaaa"></body></html>" >$ROOT_DIR/index.html
+   cat > $ROOT_DIR/index.html << EOF
+<!DOCTYPE html>
+<html>
+    <head>
+    "iz workin"
+    </head>
+    <body>
+        <h1>Testing one two tree</h1>
+            <img src="https://scontent.fadb6-5.fna.fbcdn.net/v/t31.18172-8/10608762_10204531125785467_1512482668131383046_o.jpg?_nc_cat=105&ccb=1-5&_nc_sid=174925&_nc_ohc=NoWp4GFHYHgAX9xIW5Y&_nc_ht=scontent.fadb6-5.fna&oh=00_AT--yVftjVo5EF1inzITPEQ3_Npe6kMnHTOXjfhhuQIH1w&oe=61FC7DF4" alt="kurcalamaaa">
+    </body>
+</html>"
+EOF
 }
 #Checks which OS is running
 if [ "$ID" == "ubuntu" ]; then
@@ -117,4 +128,5 @@ if [ "$WHICH_OS" == "ubuntuu" ]; then
 fi
 default_html
 echo "Installation successfull. Creating default page."
-service nginx restart
+service nginx reload
+service nginx start
