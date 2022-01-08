@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e ""
+echo -e "This file is for testing small things"
