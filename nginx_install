@@ -57,6 +57,7 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
     function install_nginx_c () {
         if [ ! -w /etc/nginx/nginx.conf ]; then
             echo -e "Installing Nginx"
+            yum -y install epel-release
             yum -y install nginx
         fi
 
