@@ -66,7 +66,7 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
         if [ -w /etc/nginx/nginx.conf ]; then
         echo -e "Nginx is installed, continuing."
            sed -i 's/80;/8000;/' /etc/nginx/nginx.conf
-           sed -i 's/:]:80/:]:8000/' /etc/nginx/nginx.conf
+           sed -i 's/:]:80;/:]:8000;/' /etc/nginx/nginx.conf
          echo -e "Changing listening port from 80 to 8000"
          echo -e "Adding firewall permissions"
          firewall-cmd --zone=public --permanent --add-port=8000/tcp
