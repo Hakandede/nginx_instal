@@ -38,14 +38,14 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
             echo -e "Starting installation for $PRETTY_NAME!"
         fi
 }
-#Cheks is nginx installed
+#UBUNTU Cheks is nginx installed
     function install_nginx_u () {
 
         if [ ! -w /etc/nginx/sites-available/default ]; then
             echo -e "Installing Nginx"
             apt install nginx -y
         fi
-#if nginx is already installed changes listen port to 80 at default .conf
+#UBUNTU if nginx is already installed changes listen port to 80 at default .conf
         if [ -w /etc/nginx/sites-available/default ]; then
             echo -e "Nginx is installed."
            sed -i 's/listen 80/listen 8000/' /etc/nginx/sites-available/default
@@ -53,7 +53,7 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
             echo -e "Changing listening port from 80 to 8000"
         fi
 }
-#if nginx is already installed changes listen port to 80 at default .conf
+#CENTOS if nginx is already installed changes listen port to 80 at default .conf
     function install_nginx_c () {
         if [ ! -w /etc/nginx/nginx.conf ]; then
             echo -e "Installing Nginx"
@@ -63,12 +63,12 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
 
         if [ -w /etc/nginx/nginx.conf ]; then
         echo -e "Nginx is installed, continuing."
-           sed -i 's/listen 80/listen 8000/' /etc/nginx/nginx.conf
+           sed -i 's/ listen 80/ listen 8000/' /etc/nginx/nginx.conf
            sed -i 's/:]:80/:]:8000/' /etc/nginx/nginx.conf
          echo -e "Changing listening port from 80 to 8000"
         fi
 }
-#Ask for system update
+#UBUNTU Ask for system update
 function ubuntu_sysupdate(){
     while true; do
     read -p "Do you wish to update your Os?: " yn
@@ -91,7 +91,7 @@ done
 }
 
 #gets the default directory for the index.html file
-#Cleans and creates example html file at main folder
+#UBUNTU Cleans and creates example html file at main folder
 function default_html_u(){
      ROOT_DIR=$(grep root -m1 /etc/nginx/sites-available/default | cut -d " " -f2 | sed 's/;$//')
    find $ROOT_DIR -type f -delete
@@ -108,6 +108,7 @@ function default_html_u(){
 </html>"
 EOF
 }
+#CENTOS looks and changes default html folder
 function default_html_c(){
      ROOT_DIR=$(grep root -m1 /etc/nginx/nginx.conf | cut -d " " -f2 | sed 's/;$//')
    find $ROOT_DIR -type f -delete
@@ -124,7 +125,7 @@ function default_html_c(){
 </html>"
 EOF
 }
-#Checks which OS is running
+#UBUNTUChecks which OS is running
 if [ "$ID" == "ubuntu" ]; then
         ubuntu_sysupdate
         if_ubuntu
