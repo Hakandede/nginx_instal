@@ -50,7 +50,9 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
             echo -e "Nginx is installed."
            sed -i 's/listen 80/listen 8000/' /etc/nginx/sites-available/default
            sed -i 's/:]:80/:]:8000/' /etc/nginx/sites-available/default
+           ufw allow 8000/tcp
             echo -e "Changing listening port from 80 to 8000"
+            echo -e "Adding Firewall permissions."
         fi
 }
 #CENTOS if nginx is already installed changes listen port to 80 at default .conf
@@ -63,9 +65,12 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
 
         if [ -w /etc/nginx/nginx.conf ]; then
         echo -e "Nginx is installed, continuing."
-           sed -i 's/ listen 80/ listen 8000/' /etc/nginx/nginx.conf
+           sed -i 's/80;/8000;/' /etc/nginx/nginx.conf
            sed -i 's/:]:80/:]:8000/' /etc/nginx/nginx.conf
          echo -e "Changing listening port from 80 to 8000"
+         echo -e "Adding firewall permissions"
+         firewall-cmd --zone=public --permanent --add-port=8000/tcp
+
         fi
 }
 #UBUNTU Ask for system update
@@ -110,7 +115,7 @@ EOF
 }
 #CENTOS looks and changes default html folder
 function default_html_c(){
-     ROOT_DIR=$(grep root -m1 /etc/nginx/nginx.conf | cut -d " " -f2 | sed 's/;$//')
+     ROOT_DIR=$(grep root -m1 /etc/nginx/nginx.conf | awk '{print $2}' | sed 's/;$//')
    find $ROOT_DIR -type f -delete
    cat > $ROOT_DIR/index.html << EOF
 <!DOCTYPE html>
@@ -154,5 +159,5 @@ if [ "$WHICH_OS" == "ubuntuu" ]; then
 fi
     
     echo "Installation successfull. Creating default page."
-service nginx reload
-service nginx start
+systemctl reload nginx
+systemctl start nginx
