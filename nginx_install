@@ -159,5 +159,6 @@ if [ "$WHICH_OS" == "ubuntuu" ]; then
 fi
     
     echo "Installation successfull. Creating default page."
-systemctl reload nginx
+systemctl enable nginx
 systemctl start nginx
+systemctl status nginx
