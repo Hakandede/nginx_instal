@@ -49,7 +49,7 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
         if [ -w /etc/nginx/sites-available/default ]; then
             echo -e "\033[0;32mNginx is installed."
            sed -i 's/listen 80 d/listen 8000 d/' /etc/nginx/sites-available/default
-           sed -i 's/listen [::]:80 default_server;/listen [::]:8000 default_server;/' /etc/nginx/sites-available/default
+           sed -i 's/:]:80 /:]:8000 /' /etc/nginx/sites-available/default
            ufw allow 8000/tcp
             echo -e "\033[0;32mChanging listening port from 80 to 8000\033[0m"
             echo -e "\033[0;32mAdding Firewall permissions.\033[0m"
