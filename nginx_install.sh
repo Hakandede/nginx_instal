@@ -165,6 +165,5 @@ fi
     echo -e "\033[0;32mInstallation successfull. Creating default page.\033[0m"
 
 
-systemctl enable nginx
-systemctl start nginx
+systemctl start nginx.service
 systemctl status nginx
