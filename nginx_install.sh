@@ -110,7 +110,7 @@ function default_html_u(){
     </head>
     <body>
         <h1>Testing one two tree</h1>
-            <img src="https://scontent.fadb6-5.fna.fbcdn.net/v/t31.18172-8/10608762_10204531125785467_1512482668131383046_o.jpg?_nc_cat=105&ccb=1-5&_nc_sid=174925&_nc_ohc=NoWp4GFHYHgAX9xIW5Y&_nc_ht=scontent.fadb6-5.fna&oh=00_AT--yVftjVo5EF1inzITPEQ3_Npe6kMnHTOXjfhhuQIH1w&oe=61FC7DF4" alt="kurcalamaaa">
+            <img src="https://c.tenor.com/zBc1XhcbTSoAAAAC/nyan-cat-rainbow.gif" alt="kurcalamaaa">
     </body>
 </html>"
 EOF
@@ -127,7 +127,7 @@ function default_html_c(){
     </head>
     <body>
         <h1>Testing one two tree</h1>
-            <img src="https://scontent.fadb6-5.fna.fbcdn.net/v/t31.18172-8/10608762_10204531125785467_1512482668131383046_o.jpg?_nc_cat=105&ccb=1-5&_nc_sid=174925&_nc_ohc=NoWp4GFHYHgAX9xIW5Y&_nc_ht=scontent.fadb6-5.fna&oh=00_AT--yVftjVo5EF1inzITPEQ3_Npe6kMnHTOXjfhhuQIH1w&oe=61FC7DF4" alt="kurcalamaaa">
+            <img src="https://c.tenor.com/zBc1XhcbTSoAAAAC/nyan-cat-rainbow.gif" alt="kurcalamaaa">
     </body>
 </html>"
 EOF
