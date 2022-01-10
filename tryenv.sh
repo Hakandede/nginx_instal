@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e "This file is for testing small things"
+echo -e "\033[0;32mThis file is for testing small things\033[0m"
