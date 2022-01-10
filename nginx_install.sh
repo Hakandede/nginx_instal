@@ -48,8 +48,8 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
 #UBUNTU if nginx is already installed changes listen port to 80 at default .conf
         if [ -w /etc/nginx/sites-available/default ]; then
             echo -e "\033[0;32mNginx is installed."
-           sed -i 's/listen 80;/listen 8000;/' /etc/nginx/sites-available/default
-           sed -i 's/[::]:80;/[::]:8000;/' /etc/nginx/sites-available/default
+           sed -i 's/listen 80 d/listen 8000 d/' /etc/nginx/sites-available/default
+           sed -i 's/[::]:80 d/[::]:8000 d/' /etc/nginx/sites-available/default
            ufw allow 8000/tcp
             echo -e "\033[0;32mChanging listening port from 80 to 8000\033[0m"
             echo -e "\033[0;32mAdding Firewall permissions.\033[0m"
@@ -87,7 +87,8 @@ done
 }
 function centos_sysupdate(){
         while true; do
-    read -p "\033[0;36mDo you wish to update the Os?: \033[0m" yn
+    echo -e -n "\033[0;32mDo you wish to update your Os?: \033[0m"
+    read -p "" yn
     case $yn in
         [Yy]* ) yum update; break;;
         [Nn]* ) break;;
@@ -156,10 +157,10 @@ if [ "$WHICH_OS" == "ubuntuu" ]; then
     elif [ "$WHICH_OS" == "centoss" ]; then
         default_html_c
     else
-    echo "\033[0;31mAn error occured cannot verify the type of the Operating system.\033[0m"
+    echo -e "\033[0;31mAn error occured cannot verify the type of the Operating system.\033[0m"
 fi
     
-    echo "\033[0;32mInstallation successfull. Creating default page.\033[0m"
+    echo -e "\033[0;32mInstallation successfull. Creating default page.\033[0m"
 
 
 systemctl enable nginx
