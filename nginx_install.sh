@@ -105,11 +105,12 @@ function default_html_u(){
    cat > $ROOT_DIR/index.html << EOF
 <!DOCTYPE html>
 <html>
-    <head>
-    "iz workin"
-    </head>
-    <body>
-        <h1>Testing one two tree</h1>
+    <title>
+    is workin
+    </title>
+    <body style="background-color:black;text-align:center;font-family:'Courier New';">
+    
+        <h1 style="color:cyan;">testing one two tree</h1>
             <img src="https://c.tenor.com/zBc1XhcbTSoAAAAC/nyan-cat-rainbow.gif" alt="kurcalamaaa">
     </body>
 </html>"
@@ -122,11 +123,12 @@ function default_html_c(){
    cat > $ROOT_DIR/index.html << EOF
 <!DOCTYPE html>
 <html>
-    <head>
-    "iz workin"
-    </head>
-    <body>
-        <h1>Testing one two tree</h1>
+    <title>
+    is workin
+    </title>
+    <body style="background-color:black;text-align:center;font-family:'Courier New';">
+    
+        <h1 style="color:cyan;">testing one two tree</h1>
             <img src="https://c.tenor.com/zBc1XhcbTSoAAAAC/nyan-cat-rainbow.gif" alt="kurcalamaaa">
     </body>
 </html>"
