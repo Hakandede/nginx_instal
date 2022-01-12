@@ -46,7 +46,7 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
             apt install nginx -y
         fi
 #UBUNTU if nginx is already installed changes listen port to 80 at default .conf
-        if [ ! -x "$(command -v nginx)" ]; then
+        if [ -x "$(command -v nginx)" ]; then
             echo -e "\033[0;32mNginx is installed."
            sed -i 's/listen 80 d/listen 8000 d/' /etc/nginx/sites-available/default
            sed -i 's/:]:80 /:]:8000 /' /etc/nginx/sites-available/default
@@ -171,5 +171,5 @@ fi
 
 
 systemctl start nginx.service
-sudo systemctl restart nginx.service
+systemctl restart nginx.service
 systemctl status nginx
