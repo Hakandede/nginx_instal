@@ -63,14 +63,16 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
             yum -y install nginx
         fi
 
-        if [ -w /etc/nginx/nginx.conf ]; then
+        if [ -x "$(command -v nginx)" ]; then
         echo -e "\033[0;32mNginx is installed, continuing.\033[0m"
-        firewall-cmd --zone=public --permanent --add-port=8000/tcp
            sed -i 's/80;/8000;/' /etc/nginx/nginx.conf
            sed -i 's/[::]:80;/[::]:8000;/' /etc/nginx/nginx.conf
          echo -e "\033[0;32mChanging listening port from 80 to 8000\033[0m"
          echo -e "\033[0;32mAdding firewall permissions\033[0m"
-         
+         yum whatprovides semanage
+         yum install policycoreutils-python
+         semanage port -m -t http_port_t -p tcp 8000
+         firewall-cmd --zone=public --permanent --add-port=8000/tcp
 
         fi
 }
