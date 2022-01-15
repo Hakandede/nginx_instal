@@ -19,15 +19,15 @@ DISTRO_NAME_HUMAN="$(gawk -F'"' '{print $2}' /etc/os-release | head -1)"
 
 
 #Version check for ubuntu and centos
-    function if_ubuntu () {
+    #function if_ubuntu () {
         WHICH_OS=ubuntuu
-        if [[ "$VERSION_ID" != "18.04" ]]; then
-            echo -e "\033[0;31mVersion of the $DISTRO_NAME_HUMAN should be 18.04!\033[0m"
-             exit 1
-        else 
-            echo -e "\033[0;32mStarting installation for $PRETTY_NAME!\033[0m"
-        fi
-        }
+       # if [[ "$VERSION_ID" != "18.04" ]]; then
+       #     echo -e "\033[0;31mVersion of the $DISTRO_NAME_HUMAN should be 18.04!\033[0m"
+       #      exit 1
+       # else 
+       #     echo -e "\033[0;32mStarting installation for $PRETTY_NAME!\033[0m"
+      #  fi
+      #  }
 #Check version of the CentOS
     function if_centos () {
         WHICH_OS=centoss
